@@ -59,88 +59,118 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <wire from="(660,250)" to="(660,580)"/>
+    <wire from="(710,370)" to="(830,370)"/>
     <wire from="(920,540)" to="(920,550)"/>
-    <wire from="(110,580)" to="(360,580)"/>
+    <wire from="(60,530)" to="(120,530)"/>
     <wire from="(140,530)" to="(200,530)"/>
-    <wire from="(840,350)" to="(900,350)"/>
-    <wire from="(50,350)" to="(100,350)"/>
-    <wire from="(840,220)" to="(840,350)"/>
-    <wire from="(800,210)" to="(840,210)"/>
+    <wire from="(840,220)" to="(840,250)"/>
     <wire from="(920,550)" to="(1150,550)"/>
-    <wire from="(800,580)" to="(1160,580)"/>
-    <wire from="(100,240)" to="(270,240)"/>
-    <wire from="(270,210)" to="(270,240)"/>
-    <wire from="(630,240)" to="(630,580)"/>
-    <wire from="(20,200)" to="(20,230)"/>
-    <wire from="(10,210)" to="(10,240)"/>
-    <wire from="(840,350)" to="(840,560)"/>
-    <wire from="(10,240)" to="(100,240)"/>
-    <wire from="(20,230)" to="(110,230)"/>
-    <wire from="(900,250)" to="(900,350)"/>
-    <wire from="(360,540)" to="(360,580)"/>
-    <wire from="(100,530)" to="(120,530)"/>
-    <wire from="(280,200)" to="(290,200)"/>
-    <wire from="(40,560)" to="(50,560)"/>
-    <wire from="(20,200)" to="(30,200)"/>
-    <wire from="(280,200)" to="(280,250)"/>
-    <wire from="(360,580)" to="(630,580)"/>
-    <wire from="(630,240)" to="(1080,240)"/>
+    <wire from="(330,210)" to="(330,240)"/>
+    <wire from="(60,240)" to="(60,530)"/>
+    <wire from="(60,530)" to="(60,630)"/>
+    <wire from="(840,530)" to="(840,630)"/>
+    <wire from="(830,210)" to="(830,370)"/>
+    <wire from="(60,210)" to="(80,210)"/>
+    <wire from="(840,630)" to="(1000,630)"/>
+    <wire from="(340,540)" to="(340,580)"/>
+    <wire from="(320,200)" to="(320,370)"/>
+    <wire from="(60,240)" to="(330,240)"/>
+    <wire from="(330,210)" to="(340,210)"/>
+    <wire from="(60,630)" to="(200,630)"/>
+    <wire from="(840,530)" to="(910,530)"/>
     <wire from="(1160,540)" to="(1160,580)"/>
     <wire from="(130,550)" to="(330,550)"/>
-    <wire from="(1080,210)" to="(1100,210)"/>
-    <wire from="(800,210)" to="(800,580)"/>
-    <wire from="(280,250)" to="(660,250)"/>
+    <wire from="(830,580)" to="(1160,580)"/>
+    <wire from="(1140,210)" to="(1160,210)"/>
+    <wire from="(70,200)" to="(70,580)"/>
+    <wire from="(340,580)" to="(660,580)"/>
+    <wire from="(840,250)" to="(1150,250)"/>
+    <wire from="(1140,210)" to="(1140,360)"/>
     <wire from="(130,540)" to="(130,550)"/>
-    <wire from="(1090,220)" to="(1090,250)"/>
+    <wire from="(840,220)" to="(900,220)"/>
     <wire from="(0,20)" to="(0,610)"/>
-    <wire from="(1080,210)" to="(1080,240)"/>
     <wire from="(330,540)" to="(330,550)"/>
-    <wire from="(900,250)" to="(1090,250)"/>
-    <wire from="(50,350)" to="(50,560)"/>
+    <wire from="(1150,220)" to="(1150,250)"/>
+    <wire from="(840,250)" to="(840,530)"/>
+    <wire from="(660,360)" to="(660,580)"/>
+    <wire from="(710,360)" to="(1140,360)"/>
     <wire from="(1150,540)" to="(1150,550)"/>
-    <wire from="(110,230)" to="(110,580)"/>
-    <wire from="(1090,220)" to="(1100,220)"/>
-    <wire from="(270,210)" to="(290,210)"/>
+    <wire from="(320,370)" to="(680,370)"/>
+    <wire from="(830,370)" to="(830,580)"/>
+    <wire from="(60,210)" to="(60,240)"/>
+    <wire from="(660,360)" to="(680,360)"/>
+    <wire from="(1150,220)" to="(1160,220)"/>
     <wire from="(930,530)" to="(1020,530)"/>
-    <wire from="(340,540)" to="(360,540)"/>
-    <wire from="(10,210)" to="(30,210)"/>
-    <wire from="(100,240)" to="(100,350)"/>
-    <wire from="(100,350)" to="(100,530)"/>
-    <wire from="(900,350)" to="(900,530)"/>
-    <wire from="(830,560)" to="(840,560)"/>
-    <wire from="(900,530)" to="(910,530)"/>
-    <wire from="(660,580)" to="(800,580)"/>
-    <comp lib="1" loc="(930,530)" name="Controlled Buffer"/>
-    <comp lib="0" loc="(830,560)" name="Clock"/>
-    <comp lib="6" loc="(956,91)" name="Text">
+    <wire from="(320,200)" to="(340,200)"/>
+    <wire from="(70,580)" to="(340,580)"/>
+    <wire from="(830,210)" to="(900,210)"/>
+    <wire from="(70,200)" to="(80,200)"/>
+    <comp lib="6" loc="(1016,91)" name="Text">
       <a name="text" val="OUTGOING MESSAGE MONITOR B"/>
+    </comp>
+    <comp lib="5" loc="(900,220)" name="TTY"/>
+    <comp lib="6" loc="(1276,91)" name="Text">
+      <a name="text" val="INCOMING MESSAGE MONITOR B"/>
+    </comp>
+    <comp lib="0" loc="(1000,630)" name="Clock">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="6" loc="(195,83)" name="Text">
+      <a name="text" val="OUTGOING MESSAGE MONITOR A"/>
+    </comp>
+    <comp lib="1" loc="(140,530)" name="Controlled Buffer"/>
+    <comp lib="0" loc="(200,630)" name="Clock">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="1" loc="(930,530)" name="Controlled Buffer"/>
+    <comp lib="5" loc="(200,530)" name="Keyboard"/>
+    <comp lib="5" loc="(1020,530)" name="Keyboard"/>
+    <comp lib="5" loc="(80,210)" name="TTY"/>
+    <comp lib="5" loc="(340,210)" name="TTY"/>
+    <comp lib="5" loc="(1160,220)" name="TTY"/>
+    <comp lib="6" loc="(454,80)" name="Text">
+      <a name="text" val="INCOMING MESSAGE MONITOR A"/>
+    </comp>
+    <comp loc="(710,360)" name="Delivery System">
+      <a name="label" val="Delivery System"/>
+    </comp>
+    <comp lib="6" loc="(1093,502)" name="Text">
+      <a name="text" val="KEYBOARD B"/>
     </comp>
     <comp lib="6" loc="(277,506)" name="Text">
       <a name="text" val="KEYBOARD A"/>
     </comp>
-    <comp lib="6" loc="(404,80)" name="Text">
-      <a name="text" val="INCOMING MESSAGE MONITOR A"/>
+  </circuit>
+  <circuit name="Delivery System">
+    <a name="circuit" val="Delivery System"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(400,260)" to="(700,260)"/>
+    <wire from="(400,320)" to="(700,320)"/>
+    <comp lib="0" loc="(400,260)" name="Pin">
+      <a name="width" val="7"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Input A"/>
     </comp>
-    <comp lib="5" loc="(200,530)" name="Keyboard"/>
-    <comp lib="5" loc="(840,220)" name="TTY"/>
-    <comp lib="5" loc="(1100,220)" name="TTY"/>
-    <comp lib="5" loc="(1020,530)" name="Keyboard"/>
-    <comp lib="6" loc="(145,83)" name="Text">
-      <a name="text" val="OUTGOING MESSAGE MONITOR A"/>
+    <comp lib="0" loc="(700,260)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="7"/>
+      <a name="label" val="Output B"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(290,210)" name="TTY"/>
-    <comp lib="0" loc="(40,560)" name="Clock"/>
-    <comp lib="6" loc="(1093,502)" name="Text">
-      <a name="text" val="KEYBOARD B"/>
+    <comp lib="0" loc="(400,320)" name="Pin">
+      <a name="output" val="true"/>
+      <a name="width" val="7"/>
+      <a name="label" val="Output A"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="1" loc="(140,530)" name="Controlled Buffer"/>
-    <comp lib="6" loc="(1216,91)" name="Text">
-      <a name="text" val="INCOMING MESSAGE MONITOR B"/>
-    </comp>
-    <comp lib="5" loc="(30,210)" name="TTY"/>
-    <comp lib="6" loc="(664,233)" name="Text">
-      <a name="text" val="MESSAGE SENDING MODULE HERE"/>
+    <comp lib="0" loc="(700,320)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="width" val="7"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Input B"/>
     </comp>
   </circuit>
 </project>
