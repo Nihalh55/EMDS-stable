@@ -5,7 +5,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
   <lib desc="#Gates" name="1"/>
   <lib desc="#Plexers" name="2"/>
   <lib desc="#Arithmetic" name="3"/>
-  <lib desc="#Memory" name="4"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
   <lib desc="#I/O" name="5"/>
   <lib desc="#Base" name="6">
     <tool name="Text Tool">
@@ -56,9 +62,78 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <appear>
       <path d="M61,51 Q65,61 69,51" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="60" stroke="#000000" stroke-width="2" width="30" x="50" y="50"/>
+      <circ-port height="8" pin="80,520" width="8" x="46" y="56"/>
+      <circ-port height="10" pin="640,330" width="10" x="75" y="55"/>
+      <circ-port height="8" pin="80,560" width="8" x="46" y="66"/>
+      <circ-port height="8" pin="80,590" width="8" x="46" y="76"/>
       <circ-anchor facing="east" height="6" width="6" x="77" y="77"/>
     </appear>
-    <comp loc="(740,380)" name="PISO"/>
+    <wire from="(380,370)" to="(440,370)"/>
+    <wire from="(580,300)" to="(580,310)"/>
+    <wire from="(570,300)" to="(570,310)"/>
+    <wire from="(560,300)" to="(560,310)"/>
+    <wire from="(540,300)" to="(540,310)"/>
+    <wire from="(530,300)" to="(530,310)"/>
+    <wire from="(550,300)" to="(550,310)"/>
+    <wire from="(590,300)" to="(590,310)"/>
+    <wire from="(460,340)" to="(520,340)"/>
+    <wire from="(80,520)" to="(460,520)"/>
+    <wire from="(80,480)" to="(450,480)"/>
+    <wire from="(440,220)" to="(440,370)"/>
+    <wire from="(450,330)" to="(450,480)"/>
+    <wire from="(600,330)" to="(640,330)"/>
+    <wire from="(550,350)" to="(550,560)"/>
+    <wire from="(370,340)" to="(370,370)"/>
+    <wire from="(380,340)" to="(380,370)"/>
+    <wire from="(150,340)" to="(150,370)"/>
+    <wire from="(80,590)" to="(560,590)"/>
+    <wire from="(80,440)" to="(110,440)"/>
+    <wire from="(110,330)" to="(140,330)"/>
+    <wire from="(150,370)" to="(370,370)"/>
+    <wire from="(80,560)" to="(550,560)"/>
+    <wire from="(110,330)" to="(110,440)"/>
+    <wire from="(160,330)" to="(240,330)"/>
+    <wire from="(460,340)" to="(460,520)"/>
+    <wire from="(580,240)" to="(580,300)"/>
+    <wire from="(570,240)" to="(570,300)"/>
+    <wire from="(560,240)" to="(560,300)"/>
+    <wire from="(540,240)" to="(540,300)"/>
+    <wire from="(530,240)" to="(530,300)"/>
+    <wire from="(550,240)" to="(550,300)"/>
+    <wire from="(590,240)" to="(590,300)"/>
+    <wire from="(440,220)" to="(520,220)"/>
+    <wire from="(560,350)" to="(560,590)"/>
+    <wire from="(450,330)" to="(520,330)"/>
+    <comp lib="0" loc="(80,590)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="Clear"/>
+    </comp>
+    <comp lib="0" loc="(80,440)" name="Clock">
+      <a name="highDuration" val="7"/>
+      <a name="lowDuration" val="7"/>
+    </comp>
+    <comp lib="1" loc="(160,330)" name="Controlled Buffer"/>
+    <comp lib="0" loc="(80,560)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="Enable"/>
+    </comp>
+    <comp loc="(600,330)" name="PISO"/>
+    <comp lib="0" loc="(640,330)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(80,480)" name="Clock"/>
+    <comp lib="5" loc="(240,330)" name="Keyboard"/>
+    <comp lib="0" loc="(80,520)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="SH/LD"/>
+    </comp>
+    <comp lib="0" loc="(520,220)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="7"/>
+      <a name="incoming" val="7"/>
+    </comp>
   </circuit>
   <circuit name="PISO">
     <a name="circuit" val="PISO"/>
