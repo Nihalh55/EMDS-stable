@@ -76,17 +76,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(430,260)" to="(430,350)"/>
     <wire from="(420,280)" to="(460,280)"/>
     <wire from="(350,340)" to="(420,340)"/>
-    <comp lib="0" loc="(240,340)" name="Pin">
-      <a name="width" val="3"/>
-      <a name="tristate" val="false"/>
-    </comp>
     <comp lib="0" loc="(330,340)" name="Splitter">
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="3"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="0" loc="(480,270)" name="Splitter">
-      <a name="facing" val="west"/>
       <a name="fanout" val="3"/>
       <a name="incoming" val="3"/>
       <a name="appear" val="center"/>
@@ -96,6 +86,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="output" val="true"/>
       <a name="width" val="3"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(480,270)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="0" loc="(240,340)" name="Pin">
+      <a name="width" val="3"/>
+      <a name="tristate" val="false"/>
     </comp>
   </circuit>
   <circuit name="Decrypter">
@@ -107,8 +107,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <rect fill="none" height="41" stroke="#000000" stroke-width="2" width="91" x="50" y="49"/>
       <circ-port height="8" pin="240,200" width="8" x="46" y="56"/>
       <circ-port height="8" pin="240,270" width="8" x="46" y="66"/>
-      <circ-port height="10" pin="1170,350" width="10" x="135" y="65"/>
-      <circ-port height="8" pin="210,510" width="8" x="46" y="76"/>
+      <circ-port height="10" pin="900,380" width="10" x="135" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="137" y="67"/>
     </appear>
     <wire from="(260,310)" to="(320,310)"/>
@@ -116,13 +115,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(260,370)" to="(320,370)"/>
     <wire from="(260,330)" to="(320,330)"/>
     <wire from="(500,430)" to="(560,430)"/>
-    <wire from="(840,440)" to="(840,450)"/>
-    <wire from="(840,460)" to="(840,470)"/>
-    <wire from="(840,480)" to="(840,490)"/>
     <wire from="(580,420)" to="(630,420)"/>
     <wire from="(260,320)" to="(310,320)"/>
     <wire from="(240,200)" to="(360,200)"/>
-    <wire from="(1070,350)" to="(1170,350)"/>
     <wire from="(580,430)" to="(640,430)"/>
     <wire from="(290,430)" to="(390,430)"/>
     <wire from="(650,360)" to="(650,440)"/>
@@ -134,17 +129,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(260,340)" to="(290,340)"/>
     <wire from="(630,320)" to="(630,420)"/>
     <wire from="(700,380)" to="(900,380)"/>
-    <wire from="(1070,350)" to="(1070,390)"/>
-    <wire from="(840,440)" to="(850,440)"/>
-    <wire from="(840,460)" to="(850,460)"/>
-    <wire from="(840,480)" to="(850,480)"/>
-    <wire from="(780,460)" to="(780,510)"/>
     <wire from="(410,430)" to="(470,430)"/>
-    <wire from="(840,430)" to="(840,440)"/>
-    <wire from="(840,450)" to="(840,460)"/>
-    <wire from="(840,470)" to="(840,480)"/>
     <wire from="(630,320)" to="(680,320)"/>
-    <wire from="(780,460)" to="(840,460)"/>
     <wire from="(240,270)" to="(360,270)"/>
     <wire from="(640,340)" to="(680,340)"/>
     <wire from="(360,250)" to="(360,270)"/>
@@ -152,11 +138,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(280,360)" to="(280,440)"/>
     <wire from="(280,440)" to="(390,440)"/>
     <wire from="(150,290)" to="(150,380)"/>
-    <wire from="(870,400)" to="(870,420)"/>
-    <wire from="(210,510)" to="(300,510)"/>
     <wire from="(650,360)" to="(680,360)"/>
     <wire from="(260,360)" to="(280,360)"/>
-    <wire from="(870,400)" to="(900,400)"/>
     <wire from="(150,290)" to="(550,290)"/>
     <wire from="(350,310)" to="(680,310)"/>
     <wire from="(350,330)" to="(680,330)"/>
@@ -165,74 +148,41 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(580,440)" to="(650,440)"/>
     <wire from="(310,420)" to="(390,420)"/>
     <wire from="(550,240)" to="(550,290)"/>
-    <wire from="(840,430)" to="(850,430)"/>
-    <wire from="(840,450)" to="(850,450)"/>
-    <wire from="(840,470)" to="(850,470)"/>
-    <wire from="(840,490)" to="(850,490)"/>
-    <wire from="(930,390)" to="(1070,390)"/>
     <wire from="(360,230)" to="(490,230)"/>
     <wire from="(360,250)" to="(490,250)"/>
-    <wire from="(330,510)" to="(780,510)"/>
+    <comp lib="1" loc="(350,370)" name="NOT Gate"/>
+    <comp lib="6" loc="(509,21)" name="Text">
+      <a name="text" val="COMMENTS"/>
+    </comp>
+    <comp lib="6" loc="(688,269)" name="Text">
+      <a name="text" val="&lt;---- INTERMEDIATE DECRYPTED MESSAGE"/>
+    </comp>
     <comp lib="0" loc="(240,380)" name="Splitter">
       <a name="fanout" val="7"/>
       <a name="incoming" val="7"/>
     </comp>
-    <comp lib="6" loc="(509,21)" name="Text">
-      <a name="text" val="COMMENTS"/>
-    </comp>
-    <comp lib="0" loc="(1170,350)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
+    <comp loc="(500,430)" name="Logical Right Bit Shifter"/>
+    <comp lib="0" loc="(240,200)" name="Pin">
       <a name="width" val="7"/>
-      <a name="label" val="Outuput"/>
-      <a name="labelloc" val="east"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Input Encrypted Message"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="6" loc="(489,44)" name="Text">
+      <a name="text" val="Working: 1) XOR with priavte key    2) Invert the even bits     3) Roatate the odd bits"/>
     </comp>
     <comp lib="1" loc="(530,240)" name="XOR Gate">
       <a name="width" val="7"/>
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(870,420)" name="Splitter">
-      <a name="facing" val="west"/>
-      <a name="fanout" val="7"/>
-      <a name="incoming" val="7"/>
-    </comp>
-    <comp lib="0" loc="(210,510)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="No Input?"/>
-    </comp>
-    <comp lib="1" loc="(330,510)" name="NOT Gate"/>
-    <comp lib="0" loc="(240,270)" name="Pin">
-      <a name="width" val="7"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Private Key"/>
-    </comp>
-    <comp loc="(500,430)" name="Logical Right Bit Shifter"/>
-    <comp lib="1" loc="(350,370)" name="NOT Gate"/>
-    <comp lib="1" loc="(350,350)" name="NOT Gate"/>
     <comp lib="0" loc="(560,430)" name="Splitter">
       <a name="fanout" val="3"/>
       <a name="incoming" val="3"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="6" loc="(489,44)" name="Text">
-      <a name="text" val="Working: 1) XOR with priavte key    2) Invert the even bits     3) Roatate the odd bits"/>
-    </comp>
-    <comp lib="0" loc="(410,430)" name="Splitter">
-      <a name="facing" val="west"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="3"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="1" loc="(930,390)" name="AND Gate">
-      <a name="width" val="7"/>
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
+    <comp lib="1" loc="(350,350)" name="NOT Gate"/>
     <comp lib="1" loc="(350,330)" name="NOT Gate"/>
-    <comp lib="6" loc="(688,269)" name="Text">
-      <a name="text" val="&lt;---- INTERMEDIATE DECRYPTED MESSAGE"/>
-    </comp>
     <comp lib="0" loc="(700,380)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="fanout" val="7"/>
@@ -240,11 +190,23 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="appear" val="right"/>
     </comp>
     <comp lib="1" loc="(350,310)" name="NOT Gate"/>
-    <comp lib="0" loc="(240,200)" name="Pin">
+    <comp lib="0" loc="(410,430)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="0" loc="(900,380)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="7"/>
+      <a name="label" val="Outuput"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(240,270)" name="Pin">
       <a name="width" val="7"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="Input Encrypted Message"/>
-      <a name="labelloc" val="north"/>
+      <a name="label" val="Private Key"/>
     </comp>
   </circuit>
 </project>
