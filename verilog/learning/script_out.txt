@@ -1,0 +1,4 @@
+READ mem[00000009], expect = 00000000 
+WRITE mem[0000300a] = feedface 
+READ mem[000002ff], expect = xxxxxxxx 
+ÿ
