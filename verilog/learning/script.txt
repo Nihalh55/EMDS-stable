@@ -1,0 +1,4 @@
+read 9 0
+write 300a feedface
+read 2FF xxxxxxxx
+bad
