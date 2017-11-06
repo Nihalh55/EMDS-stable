@@ -38,7 +38,7 @@ module SIPO(clock, serialIn, message);
 	integer 	i;	
 
 	counter4Bit	counter(.clock(clock), .isItEight(_load));
-	assign message = 0;
+	assign tempMessage = 0;
 
 	always @ (posedge clock)
 	begin
