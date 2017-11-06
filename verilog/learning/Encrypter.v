@@ -1,18 +1,4 @@
 
-//Module to check if the 8 bit ASCII input is zero or not
-module zeroChecker(message, result);
-	
-	input [7:0]	message;
-	output reg [7:0]	result;
-
-	always @ (*)
-	begin
-		if(message==0)		
-			result = 0;
-	end
-
-endmodule
-
 //Module to to logically shift bits to the right by 1
 module logicalRightShift(beforeShift, afterShift);
 
@@ -35,7 +21,7 @@ module encrypter(message, key, encryptedMessage);
 	wire [2:0] b;
 	wire [2:0] a;
 	wire [7:0] intermediateMessage;
-	wire [7:0] outZero, preFinal;
+	wire [7:0] preFinal;
 
 	assign	intermediateMessage[0] = ~message[0];
 	assign	intermediateMessage[2] = ~message[2];
@@ -53,9 +39,8 @@ module encrypter(message, key, encryptedMessage);
 	assign	intermediateMessage[5] = a[2];
 	assign	intermediateMessage[7] = message[7];
 
-	zeroChecker		gate2(.message(message), .result(outZero));
-
-	assign	preFinal = key ^ intermediateMessage;
-	assign	encryptedMessage = preFinal & outZero;
-
+	assign preFinal = key ^ intermediateMessage;
+	assign	encryptedMessage = preFinal;
+	//assign	encryptedMessage = intermediateMessage;
+	
 endmodule 	
