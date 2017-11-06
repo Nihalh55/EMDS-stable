@@ -26,42 +26,37 @@ module counter4Bit(clock, isItEight);
 	end
 endmodule
 
-//Module to implement PISO
-module PISO(clock, message, serialOut);
+//Module to implement SIPO
+module SIPO(clock, serialIn, message);
 
-	input		clock;
-	input [7:0] 	message; 
-	output reg	serialOut;
+	input			clock;
+	input			serialIn;
+	output reg [7:0]	message;
 
 	wire		_load, serialIn;
 	reg [7:0] 	tempMessage, load;
-	integer 	i;
+	integer 	i;	
 
 	counter4Bit	counter(.clock(clock), .isItEight(_load));
-	assign serialIn = 0;
+	assign message = 0;
 
 	always @ (posedge clock)
 	begin
-	
-		load = ~(_load);					//If load is 1=> shift,  else load
 
+		load = ~(_load);					//If load is 1=> shift,  else load
+		
 		if(load == 0)
-			tempMessage = message;
+			message = temp_message;
 
 		if(load == 1)
 		begin
-	
-			serialOut = tempMessage[0];
+
 			for(i = 1 ; i < 7 ; i = i + 1)
-			begin
+				begin
 
-				tempMessage[i - 1] = tempMessage[i];
+					tempMessage[i - 1] = tempMessage[i];
 
-			end
+				end
 			tempMessage[7] = serialIn;
 		end	
 	end
-endmodule
-
-	
-
