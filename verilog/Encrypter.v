@@ -1,9 +1,9 @@
 
-//Module to check if the 7 bit ASCII input is zero or not
+//Module to check if the 8 bit ASCII input is zero or not
 module zeroChecker(message, result);
 	
-	input [6:0]	message;
-	output reg [6:0]	result;
+	input [7:0]	message;
+	output reg [7:0]	result;
 
 	always @ (*)
 	begin
@@ -25,17 +25,17 @@ module logicalRightShift(beforeShift, afterShift);
 
 endmodule
 
-//Module to encrypt 7 bit message => Homomorphic and private key encryption
+//Module to encrypt 8 bit message => Homomorphic and private key encryption
 module encrypter(message, key, encryptedMessage);
 
-	input [6:0]	message;
-	input [6:0]	key;
-	output [6:0]	encryptedMessage;
+	input [7:0]	message;
+	input [7:0]	key;
+	output [7:0]	encryptedMessage;
 
 	wire [2:0] b;
 	wire [2:0] a;
-	wire [6:0] intermediateMessage;
-	wire [6:0] outZero, preFinal;
+	wire [7:0] intermediateMessage;
+	wire [7:0] outZero, preFinal;
 
 	assign	intermediateMessage[0] = ~message[0];
 	assign	intermediateMessage[2] = ~message[2];
@@ -51,6 +51,7 @@ module encrypter(message, key, encryptedMessage);
 	assign	intermediateMessage[1] = a[0];
 	assign	intermediateMessage[3] = a[1];
 	assign	intermediateMessage[5] = a[2];
+	assign	intermediateMessage[7] = message[7];
 
 	zeroChecker		gate2(.message(message), .result(outZero));
 

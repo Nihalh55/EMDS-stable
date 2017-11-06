@@ -11,16 +11,16 @@ module logicalLeftShift(beforeShift, afterShift);
 
 endmodule
 
-//Module to decrypt 7 bit message 
+//Module to decrypt 8 bit message 
 module decrypter(message, key, decryptedMessage);
 
-	input [6:0]	message;
-	input [6:0]	key;
-	output [6:0]	decryptedMessage;
+	input [7:0]	message;
+	input [7:0]	key;
+	output [7:0]	decryptedMessage;
 
 	wire [2:0] b;
 	wire [2:0] a;
-	wire [6:0] intermediateMessage;
+	wire [7:0] intermediateMessage;
 
 	assign	intermediateMessage = key ^ message;
 
@@ -38,6 +38,7 @@ module decrypter(message, key, decryptedMessage);
 	assign	decryptedMessage[1] = a[0];
 	assign	decryptedMessage[3] = a[1];
 	assign	decryptedMessage[5] = a[2];
+	assign	decryptedMessage[7] = message[7];
 
 endmodule 
 
