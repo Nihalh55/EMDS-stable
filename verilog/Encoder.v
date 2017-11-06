@@ -34,7 +34,8 @@ module PISO(clock, message, serialOut);
 	output reg	serialOut;
 
 	wire		_load, serialIn;
-	reg [7:0] 	tempMessage, load;
+	reg [7:0] 	tempMessage;
+	reg		load;
 	integer 	i;
 
 	counter4Bit	counter(.clock(clock), .isItEight(_load));
