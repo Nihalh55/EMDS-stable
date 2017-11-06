@@ -2,7 +2,7 @@
 `define NULL 0
 module script;
 integer file, file2, r;
-reg [80*8:1] command;
+reg [5*8:1] command;
 reg [31:0] addr, data;
 initial
     begin 
