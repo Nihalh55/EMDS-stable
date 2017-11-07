@@ -34,11 +34,11 @@ module SIPO(clock, serialIn, message);
 	output reg [7:0]	message;
 
 	wire		_load, serialIn;
-	reg [7:0] 	tempMessage, load;
+	reg [7:0] 	tempMessage = 0;
+	reg		load;
 	integer 	i;	
 
 	counter4Bit	counter(.clock(clock), .isItEight(_load));
-	assign tempMessage = 0;
 
 	always @ (posedge clock)
 	begin
@@ -46,7 +46,7 @@ module SIPO(clock, serialIn, message);
 		load = ~(_load);					//If load is 1=> shift,  else load
 		
 		if(load == 0)
-			message = temp_message;
+			message = tempMessage;
 
 		if(load == 1)
 		begin
@@ -60,3 +60,4 @@ module SIPO(clock, serialIn, message);
 			tempMessage[7] = serialIn;
 		end	
 	end
+endmodule

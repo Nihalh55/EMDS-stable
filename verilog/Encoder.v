@@ -1,27 +1,28 @@
 
 //Module to implement a 4 bit counter=> Each time it reaches 8 it return one
-module counter4Bit(clock, isItEight);
+module counter4Bit(clock, isItNine);
 	
 	input 		clock;
-	output reg	isItEight;					//Every eight cycle we need to load into the registers in the PISO
+	output reg	isItNine;					//Every eight cycle we need to load into the registers in the PISO
 
 	integer i = 0;
 	
 	always @ (posedge clock)
 	begin
-		i = i + 1;
 
-		if(i == 8)
+		i = i + 1;
+		if(i == 9)
 		begin
-			isItEight = 1;
+			isItNine = 1;
+			i = 0;
+		end
+
+		else
+		begin
+			isItNine = 1;
 			
 		end
 
-		else if(i == 9)
-		begin
-			isItEight = 0;
-			i = 0;
-		end
 
 	end
 endmodule
@@ -34,10 +35,11 @@ module PISO(clock, message, serialOut);
 	output reg	serialOut;
 
 	wire		_load, serialIn;
-	reg [7:0] 	tempMessage, load;
+	reg [7:0] 	tempMessage;
+	reg		load;
 	integer 	i;
 
-	counter4Bit	counter(.clock(clock), .isItEight(_load));
+	counter4Bit	counter(.clock(clock), .isItNine(_load));
 	assign serialIn = 0;
 
 	always @ (posedge clock)
