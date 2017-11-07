@@ -27,14 +27,14 @@ module counter4Bit(clock, isItEight);
 endmodule
 
 //Module to implement PISO
-module PISO(clock, message, serialOut);
+module encoder(clock, parallelIn, serialOut);
 
 	input		clock;
-	input [7:0] 	message; 
+	input [7:0] 	parallelIn; 
 	output reg	serialOut;
 
 	wire		load;
-	reg [7:0] 	tempMessage;
+	reg [7:0] 	tempparallelIn;
 	integer 	i;
 
 	counter4Bit	counter(.clock(clock), .isItEight(load));
@@ -42,48 +42,17 @@ module PISO(clock, message, serialOut);
 	always @ (posedge clock)
 	begin
 		if(load == 1)
-			tempMessage = message;
+			tempparallelIn = parallelIn;
 
 		if(load == 0)
 		begin
-			serialOut = tempMessage[0];
+			serialOut = tempparallelIn[0];
 			for(i = 1 ; i < 8 ; i = i + 1)
 			begin
-				tempMessage[i - 1] = tempMessage[i];
+				tempparallelIn[i - 1] = tempparallelIn[i];
 			end
-			tempMessage[7] = 0;
+			tempparallelIn[7] = 0;
 			//$display ("Serial Out = %b", serialOut);
 		end
 	end
-endmodule
-
-`timescale 1ns / 1ps
-
-module testbench;
-
-	reg		clock;
-	reg [7:0]	message;
-	wire 		serialOut;
-
-	initial
-        begin
-        	clock = 1; 
-        end
-   	always #1 clock = ~clock;
-
-	PISO	tester(.clock(clock), .message(message), .serialOut(serialOut));
-
-	initial 
-	begin
-	$dumpfile("16CO128-V2.vcd");
-	$dumpvars(0,testbench);
-
-	message = 8'b00001111;
-	#50 $finish;
-
-	end
-
-	/*initial begin
-		$monitor("\nTime = %d Serial out = %d", $time,  serialOut);
-	end*/
 endmodule
