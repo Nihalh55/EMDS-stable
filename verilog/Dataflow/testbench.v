@@ -1,3 +1,57 @@
+/*************************************************************************************************
+*   Title
+*   ------
+*   EMDS - Encryptes Message Delivery System
+*   
+*   Team Member Details
+*   --------------------
+*   
+*   Member 1
+*   ----------
+*   NAME: Gurupungav Narayanan
+*   ROLL: 16CO114
+*   -----------------------------
+*   
+*   Member 2
+*   ----------
+*   NAME: Nihal Haneef
+*   ROLL: 16CO128
+*   -----------------------------
+*   
+*   Date: 6th November 2018
+*
+*   Abstract 
+*   ---------
+*
+*   
+*   In a world where security and privacy have become a top priority for citizens
+*   and nations alike, encryption has become an exceedingly necessary element to
+*   communication.
+*
+*   This mini-project aims to implement a digital circuit that can:
+*   1. Allow two users to communicate with one another using text messages.
+*    	* ASCII characters
+*    	* Keyboard input in Logisim
+*    	* Displaying Messages using a TTY in Logisim.
+*    	* FIN and FOUT in Verilog.
+*
+*   2. Ask each user for a password to enable communication.
+*    	* Use LED lights to indicate whether communication is enabled.
+*    	* 4 Digit PINs for both user.
+*
+*   3. Encrypt the message to prevent interference.
+*    	* Using some kind of homomorphic encryption
+*
+*   4. Transmit the message using a transmission circuit of choice.
+*    	* Using wired transmission in Logisim and Verilog.
+*
+*
+*    Possible Real World Implementation:
+*    * A HT12E/D to Encode and Decode the data before and after transmission.
+*    * RF434 Transmitter for the transmission.  
+* 
+/*************************************************************************************************/
+
 `timescale 1ns/1ps
 module main;
     reg clock;
@@ -32,7 +86,7 @@ module main;
 
     initial
         begin
-        $dumpfile ("EMDS.vcd");
+        $dumpfile ("VerilogDM-114-128.vcd");
         $dumpvars (0, User1, User2);
         enter_message_here_user1 = $fopen("user1_enter_message_here.txt", "r");
         enter_message_here_user2 = $fopen("user2_enter_message_here.txt", "r");
@@ -47,8 +101,8 @@ module main;
     inout [7:0] user1_to_user2;
     inout [7:0] user2_to_user1;
     
-    User User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
-    User User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
+    VerilogDM_114_128 User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
+    VerilogDM_114_128 User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
 
     reg [7:0] temp1;
     reg [7:0] temp2;

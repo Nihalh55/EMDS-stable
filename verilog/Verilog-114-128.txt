@@ -1,0 +1,33 @@
+/*************************************************************************************************
+	
+	
+	Team Member Details
+  	--------------------
+  
+  	Member 1
+   	----------
+  	NAME: Gurupungav Narayanan
+   	ROLL: 16CO114
+   	-----------------------------
+   
+ 	Member 2
+   	----------
+   	NAME: Nihal Haneef
+   	ROLL: 16CO128
+   	-----------------------------
+   	
+   	Date: 6th November 2018
+
+   	Description
+   	------------
+   
+   	EMDS stands for Encrypted Message Delivery System, and is an idea we came up with around a 		week ago while texting each other, trying to figure out "What should we do for our DDS 		project?". Whatsapp is what we used to communicate and a mini whatsapp application is what 		we created.
+
+	EMDS(and whatsapp) provides a one to one secure communication service between two users. 		All messages sent accross this system is heavuily encryptes with systems unique to both 	the users. A hacker would not be able to make sense if he/she happens to get hold of the 		cipher text being sent via the transmission signal.
+
+	In this era of ever expanding global network, security is a major concern amongst everyone 		and we aim to showcase our methods of encryption and transmission.
+
+	We have utilised homomorphic encryption along with Summetric key encryption. Homomorphic 		encryption is the conversion of plain text to cipher text with the help of gates and 		boolean functions, while the later uses a private key unique to the user pair.
+ 
+   
+/*************************************************************************************************/
