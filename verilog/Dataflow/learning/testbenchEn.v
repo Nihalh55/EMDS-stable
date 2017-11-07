@@ -17,7 +17,7 @@ module testbench;
 
 	initial 
 	begin
-	$dumpfile("en-decoder.vcd");
+	$dumpfile("VerilogBM-114-128.vcd");
 	$dumpvars(0,testbench);
 
 	#2	serialIn = 1;
