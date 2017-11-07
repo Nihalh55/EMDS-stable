@@ -91,8 +91,8 @@ module Verilog_114_128;
 
     initial
         begin
-        $dumpfile ("VerilogBM-114-128.vcd");
-        //$dumpfile ("VerilogDM-114-128.vcd");        
+        //$dumpfile ("VerilogBM-114-128.vcd");
+        $dumpfile ("VerilogDM-114-128.vcd");        
         $dumpvars (0, User1, User2);
 
         // Open the text files that hold the messages
@@ -112,11 +112,11 @@ module Verilog_114_128;
     inout [7:0] user1_to_user2;
     inout [7:0] user2_to_user1;
     
-    VerilogBM_114_128 User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
-    VerilogBM_114_128 User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
+    //VerilogBM_114_128 User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
+    //VerilogBM_114_128 User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
 
-    //VerilogDM_114_128 User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
-    //VerilogDM_114_128 User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
+    VerilogDM_114_128 User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
+    VerilogDM_114_128 User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
 
     reg [7:0] temp1;
     reg [7:0] temp2;
