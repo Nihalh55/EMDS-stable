@@ -1,69 +1,58 @@
 
 //Module to implement a 4 bit counter=> Each time it reaches 8 it return one
-module counter4Bit(clock, isItNine);
+module counter4Bit(clock, isItEight);
 	
 	input 		clock;
-	output reg	isItNine;					//Every eight cycle we need to load into the registers in the PISO
+	output reg	isItEight;					//Every eight cycle we need to load into the registers in the PISO
 
 	integer i = 0;
 	
 	always @ (posedge clock)
 	begin
-
+		if (i == 0)
+			isItEight = 0;
 		i = i + 1;
 		if(i == 9)
 		begin
-			isItNine = 1;
 			i = 0;
+			isItEight = 0;
 		end
-
-		else
+		
+		else if(i==8)
 		begin
-			isItNine = 1;
-			
-		end
-
+			isItEight = 1;
+		end	
 
 	end
 endmodule
 
 //Module to implement PISO
-module PISO(clock, message, serialOut);
+module Encoder(clock, parallelIn, serialOut);
 
 	input		clock;
-	input [7:0] 	message; 
+	input [7:0] 	parallelIn; 
 	output reg	serialOut;
 
-	wire		_load, serialIn;
-	reg [7:0] 	tempMessage;
-	reg		load;
+	wire		load;
+	reg [7:0] 	tempparallelIn;
 	integer 	i;
 
-	counter4Bit	counter(.clock(clock), .isItNine(_load));
-	assign serialIn = 0;
-
+	counter4Bit	counter(.clock(clock), .isItEight(load));
+	//assign serialIn = 0;
 	always @ (posedge clock)
 	begin
-	
-		load = ~(_load);					//If load is 1=> shift,  else load
+		if(load == 1)
+			tempparallelIn = parallelIn;
 
 		if(load == 0)
-			tempMessage = message;
-
-		if(load == 1)
 		begin
-	
-			serialOut = tempMessage[0];
-			for(i = 1 ; i < 7 ; i = i + 1)
+			serialOut = tempparallelIn[0];
+			for(i = 1 ; i < 8 ; i = i + 1)
 			begin
-
-				tempMessage[i - 1] = tempMessage[i];
-
+				tempparallelIn[i - 1] = tempparallelIn[i];
 			end
-			tempMessage[7] = serialIn;
-		end	
+			tempparallelIn[7] = 0;
+			//$display ("Serial Out = %b", serialOut);
+		end
 	end
 endmodule
-
-	
-
