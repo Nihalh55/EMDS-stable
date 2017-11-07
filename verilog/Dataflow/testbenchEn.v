@@ -3,29 +3,38 @@
 module testbench;
 
 	reg 		clock;
-	reg [7:0]	parallelIn;
-	wire		serialOut;
+	wire [7:0]	parallelOut;
+	reg		serialIn;
 	
 	initial
         begin
         	clock = 1;
-		parallelIn = 8'b10101000; 
+		serialIn = 0; 
         end
    	always #1 clock = ~clock;
 
-	encoder	tester(.clock(clock), .parallelIn(parallelIn), .serialOut(serialOut));
+	decoder	tester(.clock(clock), .serialIn(serialIn), .parallelOut(parallelOut));
 
 	initial 
 	begin
 	$dumpfile("en-decoder.vcd");
 	$dumpvars(0,testbench);
 
-	#32 $finish;
+	#2	serialIn = 1;
+	#10	serialIn = 1;
+	#12	serialIn = 0;
+	#2	serialIn = 1;
+	#10	serialIn = 1;
+	#12	serialIn = 0;
+	#2	serialIn = 1;
+	#10	serialIn = 1;
+	#12	serialIn = 0;	
+	#60	$finish;
 	
 	end
 
 	initial 
 	begin
-		$monitor("\nClock = %d Serial Out = %d", clock,  serialOut);
+		$monitor("\nClock = %d Parallel Out = %d%d%d%d%d%d%d%d", clock,  parallelOut[7],parallelOut[6],parallelOut[5],parallelOut[4],parallelOut[3],parallelOut[2],parallelOut[1],parallelOut[0],);
 	end
 endmodule
