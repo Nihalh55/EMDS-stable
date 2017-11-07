@@ -1,5 +1,5 @@
 //Module to implement SIPO
-module Decoder(clock, serialIn, parallelOut);
+module decoder(clock, serialIn, parallelOut);
 
 	input			clock;
 	input			serialIn;

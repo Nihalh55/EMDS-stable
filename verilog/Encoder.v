@@ -27,7 +27,7 @@ module counter4Bit(clock, isItEight);
 endmodule
 
 //Module to implement PISO
-module Encoder(clock, parallelIn, serialOut);
+module encoder(clock, parallelIn, serialOut);
 
 	input		clock;
 	input [7:0] 	parallelIn; 
