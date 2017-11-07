@@ -105,7 +105,7 @@ endmodule
 
 
 //Module to implement a SIPO to be used in the decoder
-module SIPO(clock, serialIn, parallelOut);
+module decoder(clock, serialIn, parallelOut);
 	
 	input			clock;
 	input			serialIn;
