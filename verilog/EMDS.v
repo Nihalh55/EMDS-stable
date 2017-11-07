@@ -57,14 +57,15 @@ module Messenger(clock, enable, incoming_monitor, keyboard_input, outgoing_monit
     inout transmitted_data;
     inout incoming_data;
 
-
     reg   [7:0] key = 43;
-    //inout [7:0] encrypted_message;
-    encrypter encrypt(.message(keyboard_input), .key(key), .encryptedMessage(encrypted_monitor));
-	decrypter decrypt(.message(encrypted_monitor), .key(key), .decryptedMessage(outgoing_monitor));
+    
+	// Transmission Circuit
+	encrypter encrypt(.message(keyboard_input), .key(key), .encryptedMessage(encrypted_monitor));
+	encoder encode(.clock(clock), .parallelIn(encrypted_monitor), .serialOut(transmitted_data));
 
-    //assign encrypted_monitor = encrypted_message;
-    //assign outgoing_monitor = keyboard_input;
+	// Reception Circuit
+	decoder decode(.clock(clock), .serialIn(incoming_data), .parallelOut(encrypted_monitor));
+	decrypter decrypt(.message(encrypted_monitor), .key(key), .decryptedMessage(incoming_monitor));
 
 endmodule
 
