@@ -23,6 +23,9 @@ module main;
     inout [8*100:1] encrypted_user2_message;
     inout [8*100:1] encrypted_user1_message;
 
+    reg [3:0] password_user1;
+    reg [3:0] password_user2;
+
     integer i = 793;
     integer j = 0;
     integer r1, r2;
@@ -36,22 +39,23 @@ module main;
 
         incoming_file_user1 = $fopen("incoming_message_user1.txt", "w");
         incoming_file_user2 = $fopen("incoming_message_user2.txt", "w");
-
+        
         r1 = $fgets(message_user1, enter_message_here_user1);
         r2 = $fgets(message_user2, enter_message_here_user2);        
         end
 
     inout [7:0] user1_to_user2;
     inout [7:0] user2_to_user1;
-    //inout user1_to_user2;
-    //inout user2_to_user1;
-    User User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
-    User User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
+    
+    User User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .password(password_user1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
+    User User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .password(password_user2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
 
     reg [7:0] temp1;
     reg [7:0] temp2;
     initial 
         begin
+            password_user1 = 4'b0101;
+            password_user2 = 4'b0101;
             #10000
             $display ("\n\n\tUSER1\n\n|Outgoing Message\n|%100s|\n|Incoming Message\n|%100s|\n|Undecrypted Incoming Message\n|%100s|", message_user1, write_to_file1, encrypted_user2_message);              
             $display ("\n\n\tUSER2\n\n|Outgoing Message\n|%100s|\n|Incoming Message\n|%100s|\n|Undecrypted Incoming Message\n|%100s|", message_user2, write_to_file2, encrypted_user1_message);              

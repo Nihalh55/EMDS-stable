@@ -23,13 +23,13 @@
 
 `timescale 1ns/1ps
 
-module User(clock, enter_text_here, receiving_message_to_file, encrypted_message, out, in);
+module User(clock, enter_text_here, receiving_message_to_file, encrypted_message, password, out, in);
+	
 	input [8*100:1] enter_text_here;
 	inout [8*100:1] receiving_message_to_file;
 	inout [8*100:1] encrypted_message;
 
 	inout [7:0] out, in;
-	//inout out, in;
 	input clock;
 
 	inout [7:0] keyboard_out_to_box;
@@ -37,10 +37,27 @@ module User(clock, enter_text_here, receiving_message_to_file, encrypted_message
 	inout [7:0] encrypted_monitor;
 	inout keyboard_clock, op_when;
 
-	Keyboard keyboard(.clock(keyboard_clock), .in_message(enter_text_here), .out_character(keyboard_out_to_box));
+	input [3:0] password;
+	inout enable;
+	reg enbl;
+	assign enable = enbl;
+	inout result;
+	
+	/* Enable the circuit if password
+	   is correct */
+
+	passwordChecker pwd(password, result);
+	always @(posedge clock)
+	begin
+		if (result == 1)
+			enbl = 1;
+	end
+
+	Keyboard keyboard(.enable(enable), .clock(keyboard_clock), .in_message(enter_text_here), .out_character(keyboard_out_to_box));
 	Messenger box (.clock(clock), .in(in), .encrypted_monitor(encrypted_monitor), .message_character(keyboard_out_to_box), .incoming_monitor(messenger_to_incoming_monitor), .out(out), .keyboard_clock(keyboard_clock), .op_when(op_when));
-	Monitor incomingMonitor (.clock(op_when), .in_character(messenger_to_incoming_monitor), .out_message(receiving_message_to_file));
-	Monitor encryptedMonitor(.clock(op_when), .in_character(encrypted_monitor), .out_message(encrypted_message));
+	Monitor incomingMonitor (.enable(enable), .clock(op_when), .in_character(messenger_to_incoming_monitor), .out_message(receiving_message_to_file));
+	Monitor encryptedMonitor(.enable(enable), .clock(op_when), .in_character(encrypted_monitor), .out_message(encrypted_message));
+
 endmodule
 
 module Messenger(clock, in, message_character, incoming_monitor, out, keyboard_clock, op_when, encrypted_monitor);
@@ -52,31 +69,28 @@ module Messenger(clock, in, message_character, incoming_monitor, out, keyboard_c
 	wire  [7:0] _in;
 	inout incoming_character;
 	inout outgoing_character;
-	//inout [7:0] incoming_character;
-	//inout [7:0] outgoing_character;
 	inout [7:0] message_character;
 
 	reg   [7:0] key = 43;
-	inout [7:0] incoming_monitor; // Decrypted incoming_character
+	inout [7:0] incoming_monitor;
 	inout [7:0] encrypted_monitor;
 	inout keyboard_clock, op_when;
-	//decrypter decrypt(in, key, incoming_monitor);
-	//encrypter encrypt(message_character, key, out);
 	assign _in = in;
 	
 	decoder decode (clock, incoming_character, _in);
 	assign encrypted_monitor = in;
 	decrypter decrypt(in, key, incoming_monitor);
-	
-	
+		
 	encrypter encrypt(message_character, key, out);
 	encoder encode (clock, out, outgoing_character, keyboard_clock, op_when);
+
 endmodule
 
 //Module that splits a string into a stream of characters
-module Keyboard(clock, in_message, out_character);
+module Keyboard(clock, in_message, out_character, enable);
     input clock;
     input [8*100:1] in_message;
+	input enable;
 
     reg[7:0] out;
     integer i = 1, j = 0;
@@ -86,17 +100,21 @@ module Keyboard(clock, in_message, out_character);
 
     always @(posedge clock)
         begin
-            for (j = 0; j < 8; j++)
-                out[j] = in_message[i+j];
-            i = i+8;
+			if (enable == 1)
+			begin
+	            for (j = 0; j < 8; j++)
+    	            out[j] = in_message[i+j];
+        	    i = i+8;
+			end
         end
 endmodule
 
 //Module that concatenates stream of characters to a string
-module Monitor(clock, in_character, out_message);
+module Monitor(clock, enable, in_character, out_message, enable);
     input clock;
     input [7:0] in_character;
     output [8*100:1] out_message;
+	inout enable;
 
     reg [8*100:1] out;
     assign out_message = out;
@@ -105,10 +123,13 @@ module Monitor(clock, in_character, out_message);
 
     always @(posedge clock)
         begin
-            for (j = 0; j < 8; j++)
-                out[i+j] = in_character[j];
-            i = i+8;
-        end
+			if (enable == 1)
+			begin
+            	for (j = 0; j < 8; j++)
+	                out[i+j] = in_character[j];
+	            i = i+8;
+			end
+		end
     
 endmodule
 
@@ -308,4 +329,21 @@ module decoder(clock, serialIn, parallelOut);
 				end
 		end	
 	end
+endmodule
+
+//Module to verify password so as to enable the circuit
+//If switchOff == 1 => Circuit is off
+module passwordChecker(password, result);
+
+	input [3:0]	password;
+	output reg	result;
+
+	always @(*)
+	begin
+		if(password == 4'b0101)
+			result = 1;
+		else
+			result = 0;
+	end
+
 endmodule
