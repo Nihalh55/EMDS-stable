@@ -23,54 +23,50 @@
 
 `timescale 1ns/1ps
 
-module User(clock, enter_text_here, receiving_message_to_file, encrypted_message, out, in);
+module User(clock, enter_text_here, receiving_message_to_file, out, in);
 	input [8*100:1] enter_text_here;
 	inout [8*100:1] receiving_message_to_file;
-	inout [8*100:1] encrypted_message;
 
-	inout [7:0] out, in;
-	//inout out, in;
+	//inout [7:0] out, in;
+	inout out, in;
 	input clock;
 
 	inout [7:0] keyboard_out_to_box;
 	inout [7:0] messenger_to_incoming_monitor;
-	inout [7:0] encrypted_monitor;
+
 	inout keyboard_clock, op_when;
 
 	Keyboard keyboard(.clock(keyboard_clock), .in_message(enter_text_here), .out_character(keyboard_out_to_box));
-	Messenger box (.clock(clock), .in(in), .encrypted_monitor(encrypted_monitor), .message_character(keyboard_out_to_box), .incoming_monitor(messenger_to_incoming_monitor), .out(out), .keyboard_clock(keyboard_clock), .op_when(op_when));
+	Messenger box (.clock(clock), .in(in), .message_character(keyboard_out_to_box), .incoming_monitor(messenger_to_incoming_monitor), .out(out), .keyboard_clock(keyboard_clock), .op_when(op_when));
 	Monitor incomingMonitor (.clock(op_when), .in_character(messenger_to_incoming_monitor), .out_message(receiving_message_to_file));
-	Monitor encryptedMonitor(.clock(op_when), .in_character(encrypted_monitor), .out_message(encrypted_message));
 endmodule
 
-module Messenger(clock, in, message_character, incoming_monitor, out, keyboard_clock, op_when, encrypted_monitor);
+module Messenger(clock, in, message_character, incoming_monitor, out, keyboard_clock, op_when);
 	
 	input clock;
-	inout [7:0] in;
-	inout [7:0] out;
-
-	wire  [7:0] _in;
-	inout incoming_character;
-	inout outgoing_character;
-	//inout [7:0] incoming_character;
-	//inout [7:0] outgoing_character;
+	//inout [7:0] in;
+	//inout [7:0] out;
+	inout in, out;
+	//inout [7:0] _in;
+	//inout incoming_character;
+	//inout outgoing_character;
+	inout [7:0] incoming_character;
+	inout [7:0] outgoing_character;
 	inout [7:0] message_character;
 
 	reg   [7:0] key = 43;
 	inout [7:0] incoming_monitor; // Decrypted incoming_character
-	inout [7:0] encrypted_monitor;
+
 	inout keyboard_clock, op_when;
 	//decrypter decrypt(in, key, incoming_monitor);
 	//encrypter encrypt(message_character, key, out);
-	assign _in = in;
+	//assign _in = in;
+
+	decoder decode (clock, in, incoming_character);
+	decrypter decrypt(incoming_character, key, incoming_monitor);
 	
-	decoder decode (clock, incoming_character, _in);
-	assign encrypted_monitor = in;
-	decrypter decrypt(in, key, incoming_monitor);
-	
-	
-	encrypter encrypt(message_character, key, out);
-	encoder encode (clock, out, outgoing_character, keyboard_clock, op_when);
+	encrypter encrypt(message_character, key, outgoing_character);
+	encoder encode (clock, outgoing_character, out, keyboard_clock, op_when);
 endmodule
 
 //Module that splits a string into a stream of characters

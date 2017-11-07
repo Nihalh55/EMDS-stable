@@ -20,8 +20,6 @@ module main;
 
     inout [8*100:1] write_to_file1;
     inout [8*100:1] write_to_file2;
-    inout [8*100:1] encrypted_user2_message;
-    inout [8*100:1] encrypted_user1_message;
 
     integer i = 793;
     integer j = 0;
@@ -31,8 +29,8 @@ module main;
         begin
         $dumpfile ("EMDS.vcd");
         $dumpvars (0, User1, User2);
-        enter_message_here_user1 = $fopen("user1_enter_message_here.txt", "r");
-        enter_message_here_user2 = $fopen("user2_enter_message_here.txt", "r");
+        enter_message_here_user1 = $fopen("outgoing_message_user1.txt", "r");
+        enter_message_here_user2 = $fopen("outgoing_message_user2.txt", "r");
 
         incoming_file_user1 = $fopen("incoming_message_user1.txt", "w");
         incoming_file_user2 = $fopen("incoming_message_user2.txt", "w");
@@ -41,20 +39,20 @@ module main;
         r2 = $fgets(message_user2, enter_message_here_user2);        
         end
 
-    inout [7:0] user1_to_user2;
-    inout [7:0] user2_to_user1;
-    //inout user1_to_user2;
-    //inout user2_to_user1;
-    User User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .out(user1_to_user2), .in(user2_to_user1), .encrypted_message(encrypted_user2_message));
-    User User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .out(user2_to_user1), .in(user1_to_user2), .encrypted_message(encrypted_user1_message));
+    //inout [7:0] user1_to_user2;
+    //inout [7:0] user2_to_user1;
+    inout user1_to_user2;
+    inout user2_to_user1;
+    User User1 (.clock(clock), .enter_text_here(message_user1), .receiving_message_to_file(write_to_file1), .out(user1_to_user2), .in(user2_to_user1));
+    User User2 (.clock(clock), .enter_text_here(message_user2), .receiving_message_to_file(write_to_file2), .out(user2_to_user1), .in(user1_to_user2));
 
     reg [7:0] temp1;
     reg [7:0] temp2;
     initial 
         begin
             #10000
-            $display ("\n\n\tUSER1\n\n|Outgoing Message\n|%100s|\n|Incoming Message\n|%100s|\n|Undecrypted Incoming Message\n|%100s|", message_user1, write_to_file1, encrypted_user2_message);              
-            $display ("\n\n\tUSER2\n\n|Outgoing Message\n|%100s|\n|Incoming Message\n|%100s|\n|Undecrypted Incoming Message\n|%100s|", message_user2, write_to_file2, encrypted_user1_message);              
+            $display ("\n\n\tUSER1\n\n Outgoing Message:%s\n\n Incoming Message:%s", message_user1, write_to_file1);              
+            $display ("\n\n\tUSER2\n\n Outgoing Message:%s\n\n Incoming Message:%s", message_user2, write_to_file2);              
             
             while (i > 0)
                 begin
